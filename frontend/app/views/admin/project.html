@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-md-12">
+        <h4>
+            Danh sach dự án
+        </h4>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Tên dự án</th>
+                    <th>Thành viên</th>
+                    <th>Ngày khởi tạo</th>
+                    <th>Người tạo</th>
+                    <th>Sửa / Xóa</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="project in datasource">
+                    <td>{{$index + 1}}</td>
+                    <td>{{project.name}}</td>
+                    <td>{{project.member.length}}</td>
+                    <td>{{project.create_at | date}}</td>
+                    <td>{{project.creator.firstname + ' ' + project.creator.lastname}}</td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="selectItem(project)" data-toggle="modal" data-target="#EditItem">Sửa</button>
+                        <button class="btn btn-danger" ng-click="confirmDel(project)">Xóa</button>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="EditItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit project</h4>
+              </div>
+              <div class="modal-body">
+                Name: <input type="text" id="namePrj" ng-model="selectedItems.name" />
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="saveItem(selectedItems)">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
